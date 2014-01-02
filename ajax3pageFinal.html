@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Three html Pages</title>
+	<script>
+		var xmlhttp;
+
+		function loadXMLDoc(url,cfunc)
+		{
+		
+			if (window.XMLHttpRequest)
+			{// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xmlhttp.onreadystatechange=cfunc;
+			xmlhttp.open("GET",url,true);
+			xmlhttp.send();
+		}
+
+		function myFunction(url,id)
+		{
+		
+			loadXMLDoc(url,function()
+			{
+			
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					
+					document.getElementById(id).innerHTML=xmlhttp.responseText;
+				}
+			});
+		}
+
+
+	</script>
+</head>
+<body>
+
+	<div id="myDiv"><h2>CONTACTS</h2></div>
+	<button type="button" onclick="myFunction('firstpage.html', 'myDiv')">For more details Click here</button>
+
+
+	<div id="myDi"><h2> SPORTS </h2></div>
+	<button type="button" onclick="myFunction('secondpage.html', 'myDi')">For more details Click here</button>
+
+	<div id="myD"><h2> MARKET </h2></div>
+	<button type="button" onclick="myFunction('thirdpage.html', 'myD')">For more details Click here</button> 
+
+</body>
+</html>
